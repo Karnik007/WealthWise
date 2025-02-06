@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Wise - Login/Signup</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+    <div class="background">
+        <img src="{% static 'Back.jpg' %}" alt="">
+    </div>
+    <div class="container" id="container">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <div class="form-container signin">
+            <form class="form" method="POST">
+                {% csrf_token %}
+                <h1>Log In</h1>
+                {{login_form.as_p}}
+                <button type="submit" name="login">Log In</button>
+           
+            </form>
+        </div>
+        <div class="form-container signup">
+            <form class="form" method="POST">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                {{signup_form.as_p}}
+                <button type="submit" name="signup">Create Account</button>
+            </form>
+        </div>
+        <div class="overlay">
+            <div class="overlay-content">
+                <h1 id="overlay-title">Hello, Friend!</h1>
+                <p id="overlay-text">Enter your details and start your journey with Wealth Wise</p>
+                <button id="toggle">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const toggleButton = document.getElementById('toggle');
+        const overlayTitle = document.getElementById('overlay-title');
+        const overlayText = document.getElementById('overlay-text');
+
+        toggleButton.addEventListener('click', () => {
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                overlayTitle.style.transition = 'opacity 0.4s ease';
+                overlayText.style.transition = 'opacity 0.4s ease';
+                toggleButton.style.transition = 'opacity 0.4s ease';
+                overlayTitle.style.opacity = '0';
+                overlayText.style.opacity = '0';
+                toggleButton.style.opacity = '0';
+                setTimeout(() => {
+                    overlayTitle.textContent = 'Welcome Back!';
+                    overlayText.textContent = 'To keep connected, please sign in';
+                    toggleButton.textContent = 'Log In';
+                    overlayTitle.style.opacity = '1';
+                    overlayText.style.opacity = '1';
+                    toggleButton.style.opacity = '1';
+                }, 400);
+            } else {
+                overlayTitle.style.transition = 'opacity 0.4s ease';
+                overlayText.style.transition = 'opacity 0.4s ease';
+                toggleButton.style.transition = 'opacity 0.4s ease';
+                overlayTitle.style.opacity = '0';
+                overlayText.style.opacity = '0';
+                toggleButton.style.opacity = '0';
+                setTimeout(() => {
+                    overlayTitle.textContent = 'Hello, Friend!';
+                    overlayText.textContent = 'Enter your details and start your journey with Wealth Wise';
+                    toggleButton.textContent = 'Create Account';
+                    overlayTitle.style.opacity = '1';
+                    overlayText.style.opacity = '1';
+                    toggleButton.style.opacity = '1';
+                }, 400);
+            }
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,142 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="{% static 'LogoWw.jpg' %}" alt="" class="logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="navbar-menu">
+            <li class="about-item">
+                <a href="#" class="about-toggle">About Us</a>
+                <ul class="about-dropdown">
+                    <li class="our-mission-item">
+                        <a href="#" class="our-mission-toggle">Our Mission</a>
+                        <div class="our-mission-snippet">
+                            <p>
+                                To empower individuals and families to achieve financial freedom through smart money management, goal setting, and personalized insights. At Wealth-Wise, we aim to simplify financial decision-making and help our users build a secure and prosperous future.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="services-item">
+                <a href="#" class="services-toggle">Services</a>
+                <ul class="services-dropdown">
+                    <li><a href="i1.html">Income & Expenses</a></li>
+                    <li><a href="#">Goal Setting</a></li>
+                    <li><a href="#">Bill Payment Reminders</a></li>
+                    <li><a href="#">Financial Reports</a></li>
+                </ul>
+            </li>
+
+            <li class="contact-item">
+                <a href="#" class="contact-toggle">Contact Us</a>
+                <ul class="contact-dropdown">
+                    <li class="email-item">
+                        <a href="#">Email Us</a>
+                        <ul class="email-dropdown">
+                            <li><a href="mailto:Wealth-Wise@gmail.com" target="_blank">Wealth-Wise@gmail.com</a></li>
+                            <li><a href="mailto:Wealth-Wise@outlook.com"  target="_blank">Wealth-Wise@outlook.com</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="login-signup">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="logout">Log Out</a>
+                {% else %}
+                    <a href="{% url 'signup' %}" class="login">Log In</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <main class="main-wrapper">
+        <div class="background-image"></div>
+        <section class="home_hero-section background-color-blurple">
+            <div class="container-large">
+                <div class="home_hero-left">
+                    <h1>How will you spend your <span class="text-span-3">wealth</span> wisely?</h1>
+                    <p class="hero_subhead">
+                        Create a smart financial plan and achieve your goals with Wealth Wise.
+                    </p>
+                </div>
+                <div class="home_hero-right">
+                    <div class="floating-hero-wrapper">
+                        <img src="https://cdn.prod.website-files.com/640f69143ec11b21d42015c6/6502e96f8b7ff92feac8c8ab_hero-phone.png"
+                             alt="Wealth Wise App on Phone" class="floating-hero">
+                        <div class="floating-shadow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-branding">
+            <img src="{% static 'LogoWw.jpg' %}" alt="" class="logo">
+            <p>Your Partner in Financial Growth</p>
+        </div>
+
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="#">Budgeting Tools</a></li>
+                    <li><a href="#">Investment Plans</a></li>
+                    <li><a href="#">Financial Reports</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="#"><img src="{% static 'twiter.svg' %}"alt="Twitter"></a>
+            <a href="#"><img src="{% static 'linkedin.svg' %}" alt="LinkedIn"></a>
+            <a href="#"><img src="{% static 'instagram.svg' %}" alt="Instagram"></a>
+        </div>
+
+        <div class="footer-copyright">
+            <p>&copy; 2025 Wealth-Wise. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'home.js' %}"></script>
+</body>
+</html>
