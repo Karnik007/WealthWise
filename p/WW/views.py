@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
-from .forms import SignupForm, LoginForm
-from .models import User
+from .forms import SignupForm, LoginForm, BillForm
+from .models import User,Bill
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
@@ -50,3 +50,21 @@ def logout(request):
 
 def i1(request):
     return render(request, 'WW/i1.html/')
+
+def i2(request):
+    return render(request, 'WW/Gs.html/')
+
+def i3(request):
+    bill_form = BillForm()
+    if request.method == 'POST':
+        bill_form = BillForm(request.POST)
+        if bill_form.is_valid():
+            BillName=bill_form.cleaned_data['BillName']
+            Duedate=bill_form.cleaned_data['Duedate']
+            Billamount=bill_form.cleaned_data['Billamount']
+            bill_form.save()
+            return redirect('home')
+    return render(request, 'WW/B.html/')
+
+def i4(request):
+    return render(request, 'WW/home.html/')

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Payment Reminder</title>
+    <link rel="stylesheet" href="{% static 'B.css' %}">
+</head>
+<body>
+
+    <div class="contact-form">
+        <h2>Bill Payment Reminder</h2>
+        <form id="billForm" method="POST">
+            {% csrf_token %}
+            <label for="billName">Bill Name:</label>
+            <input type="text" id="billName" name="billName" placeholder="" required>
+            <br>
+
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" name="dueDate" required>
+            <br>
+
+            <label for="amount">Bill Amount ($):</label>
+            <input type="number" id="amount" name="amount" placeholder="" required>
+            {{BillForm.as_p}}
+            <br>
+
+            <button type="submit" name="billForm" class="btn2" >Set Reminder</button>
+            <a href="{%  url 'home' %}" >Home</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('billForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let billName = document.getElementById('billName').value;
+            let dueDate = document.getElementById('dueDate').value;
+            let amount = document.getElementById('amount').value;
+            let contact = document.getElementById('contact').value;
+            
+
+            if (billName && dueDate && amount && contact) {
+                document.getElementById('reminderBill').textContent = billName;
+                document.getElementById('reminderAmount').textContent = amount;
+                document.getElementById('reminderDate').textContent = dueDate;
+                document.getElementById('reminderContact').textContent = contact;
+                document.getElementById('reminderMessage').style.display = 'block';
+
+                alert(`Reminder Set!\n\nBill: ${billName}\nAmount: $${amount}\nDue Date: ${dueDate}\nNotification will be sent to: ${contact}`);
+
+                document.getElementById('billForm').reset();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+    </script>
+
+</body>
+</html>

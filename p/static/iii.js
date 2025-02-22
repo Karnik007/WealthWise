@@ -112,7 +112,6 @@ function toggleForm(formId) {
 }
 function addIncome(event) {
     event.preventDefault();
-    
     const name = event.target.name.value.trim();
     const amount = parseFloat(event.target.amount.value);
     const frequency = event.target.frequency.value;
@@ -180,7 +179,6 @@ function calculateMonthlyAmount(amount, frequency, startMonth) {
             monthlyAmounts[startMonth] = amount;
             break;
     }
-    
     return monthlyAmounts;
 }
 function renderIncomeSources() {

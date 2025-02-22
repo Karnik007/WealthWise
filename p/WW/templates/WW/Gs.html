@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Goals</title>
+    <link rel="stylesheet" href="{% static 'G.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Set Your Goals</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="goal_name">Goal Name:</label>
+                <input type="text" id="goal_name" name="goal_name" required>
+            </div>
+            <div class="form-group">
+                <label for="goal_description">Goal Description:</label>
+                <textarea id="goal_description" name="goal_description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="goal_deadline">Goal Deadline:</label>
+                <input type="date" id="goal_deadline" name="goal_deadline" required>
+            </div>
+            <button type="submit">Set Goal</button>
+        </form>
+    </div>
+</body>
+</html>

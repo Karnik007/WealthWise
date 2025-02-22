@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-from .models import User
+from .models import User ,Bill
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
@@ -9,3 +9,8 @@ class SignupForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class BillForm(forms.ModelForm):
+    class Meta:
+        model = Bill
+        fields = ['BillName', 'Duedate', 'Billamount']

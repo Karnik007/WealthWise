@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'WW',# Add this line
-    'tailwind', # Add this line
-    'theme',
+ 
     ]
 TAILWIND_APP_NAME = 'theme' # Add this line
 INTERNAL_IPS = ["127.0.0.1"]
@@ -75,19 +74,12 @@ WSGI_APPLICATION = 'p.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
-DATABASES = {  
-    'default':
-      {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'wealthwise',  
-        'USER': 'root',  
-        'PASSWORD': 'dev@2006',  
-        'HOST': 'localhost',  
-        'PORT': '3306', 
-    }  
-}  
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 
