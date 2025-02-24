@@ -57,11 +57,7 @@
         </ul>
         
         <div class="login-signup">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="logout">Log Out</a>
-                {% else %}
                     <a href="{% url 'signup' %}" class="login">Log In</a>
-                {% endif %}
             </div>
         </div>
     </nav>

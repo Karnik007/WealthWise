@@ -6,14 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from django.contrib.auth import login as auth_login, authenticate
-from django.http import HttpResponse
 def home(request):
     return render(request, 'WW/home.html')
 
 def signup(request):
     if request.user.is_authenticated:
         messages.info(request, 'You are already logged in.')
-        return HttpResponse('You are already logged in')
         return redirect('home')
     login_form = LoginForm()
     signup_form = SignupForm()
@@ -43,10 +41,6 @@ def signup(request):
         'login_form': login_form,
         'signup_form': signup_form,
     })
-@login_required
-def logout(request):
-    auth_logout(request)
-    return redirect('home')
 
 def i1(request):
     return render(request, 'WW/i1.html/')

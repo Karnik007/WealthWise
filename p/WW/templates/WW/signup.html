@@ -12,13 +12,6 @@
         <img src="{% static 'Back.jpg' %}" alt="">
     </div>
     <div class="container" id="container">
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
         <div class="form-container signin">
             <form class="form" method="POST">
                 {% csrf_token %}
