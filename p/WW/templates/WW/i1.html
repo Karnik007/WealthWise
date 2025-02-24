@@ -1,4 +1,4 @@
-{% load  static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,133 +11,110 @@
     <div class="container">
         <div class="header">
             <h1>Expense Tracker</h1>
-            <div class="controls">
-                <form id="monthForm"  method="POST">
-                    <select name="month" id="month">
-                        <option value="0">January</option>
-                        <option value="1">February</option>
-                        <option value="2">March</option>
-                        <option value="3">April</option>
-                        <option value="4">May</option>
-                        <option value="5">June</option>
-                        <option value="6">July</option>
-                        <option value="7">August</option>
-                        <option value="8">September</option>
-                        <option value="9">October</option>
-                        <option value="10">November</option>
-                        <option value="11">December</option>
-                    </select>
-                </form>
-                <form id="currencyForm" method="POST">
-                    <select name="currency" id="currencySelector">
-                        <option value="INR">INR (₹)</option>
-                        <option value="USD">USD ($)</option>
-                        <option value="EUR">EUR (€)</option>
-                        <option value="GBP">GBP (£)</option>
-                        <option value="JPY">JPY (¥)</option>
-                    </select>
-                </form>
+            <select>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        </div><div class="summary-cards">
+        <div class="summary-card">
+            <div class="card-title">Total Income</div>
+            <div class="amount">₹{{ total_income }}</div>
+            <div class="progress-container">
+                <div class="progress-bar safe" style="width: 100%"></div>
             </div>
         </div>
 
-        <div class="summary-cards">
-            <div class="summary-card">
-                <div class="card-title">Total Income</div>
-                <div class="amount" id="totalIncome">₹0.00</div>
-                <div class="progress-container">
-                    <div class="progress-bar safe"></div>
-                </div>
-            </div>
-            <div class="summary-card">
-                <div class="card-title">Total Expenses</div>
-                <div class="amount expense" id="totalExpenses">₹0.00</div>
-                <div class="progress-container">
-                    <div class="progress-bar danger"></div>
-                </div>
-            </div>
-            <div class="summary-card">
-                <div class="card-title">Savings</div>
-                <div class="amount" id="savings">₹0.00</div>
-                <div class="progress-container">
-                    <div class="progress-bar warning"></div>
-                </div>
+        <div class="summary-card">
+            <div class="card-title">Total Expenses</div>
+            <div class="amount expense">₹{{ total_expense }}</div>
+            <div class="progress-container">
+                <div class="progress-bar danger" style="width: {{ total_expense_percentage }}%"></div>
             </div>
         </div>
 
-        <div class="main-content">
-            <!-- Income Sources Section -->
-            <div class="section">
-                <div class="section-header">
-                    <h2>Income Sources</h2>
-                    <button class="add-btn add-btn1" onclick="toggleForm('addIncomeForm')">+ Add Income</button>
-                </div>
-                <form id="addIncomeForm" action="/add-income" method="POST" style="display:none;">
-                    <div class="form-group">
-                        <label>Select Icon:</label>
-                        <div class="emoji-picker">
-                            <input type="hidden" name="selectedEmoji" id="incomeEmoji" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Income Source Name:</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Amount:</label>
-                        <input type="number" name="amount" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Frequency:</label>
-                        <select name="frequency" required>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                            <option value="one-time">One-time</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="add-btn">Save Income</button>
-                </form>
-                <div id="incomeList">
-                    <!-- Income items will be populated here -->
-                </div>
-            </div>
-
-            <!-- Expenses Section (Now placed below Income Sources) -->
-            <div class="section">
-                <div class="section-header">
-                    <h2>Expenses</h2>
-                    <button class="add-btn add-btn2" onclick="toggleForm('addExpenseForm')">+ Add Expense</button>
-                </div>
-                <form id="addExpenseForm" method="POST" style="display:none;">
-                    <div class="form-group">
-                        <label>Select Icon:</label>
-                        <div class="emoji-picker">
-                            <input type="hidden" name="selectedEmoji" id="expenseEmoji" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Expense Name:</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Amount:</label>
-                        <input type="number" name="amount" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Frequency:</label>
-                        <select name="frequency" required>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                            <option value="one-time">One-time</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="add-btn">Save Expense</button>
-                </form>
-                <div id="expenseList">
-                    <!-- Expense items will be populated here -->
-                </div>
+        <div class="summary-card">
+            <div class="card-title">Savings</div>
+            <div class="amount">₹{{ savings }}</div>
+            <div class="progress-container">
+                <div class="progress-bar warning" style="width: {{ savings_percentage }}%"></div>
             </div>
         </div>
     </div>
-    <script src="{% static 'iii.js' %}"></script>
+
+    <div class="main-content">
+        <div class="section">
+            <div class="section-header">
+                <h2>Income Sources</h2>
+                <button class="add-btn" onclick="toggleForm('incomeForm')">+ Add Income</button>
+            </div>
+            <div id="incomeForm" class="form-popup" style="display: none;">
+                <form method="POST" action="{% url 'add_income' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Source</label>
+                        {{ income_form.source }}
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        {{ income_form.amount }}
+                    </div>
+                    <button type="submit" class="add-btn">Add Income</button>
+                </form>
+            </div>
+            {% for income in incomes %}
+            <div class="category-item">
+                <span class="category-icon">{{ income.emoji }}</span>
+                <div class="category-name">{{ income.source }}</div>
+                <div class="amount">₹{{ income.amount }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>Expenses</h2>
+                <button class="add-btn" onclick="toggleForm('expenseForm')">+ Add Expense</button>
+            </div>
+            <div id="expenseForm" class="form-popup" style="display: none;">
+                <form method="POST" action="{% url 'add_expense' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Category</label>
+                        {{ expense_form.category }}
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        {{ expense_form.amount }}
+                    </div>
+                    <button type="submit" class="add-btn">Add Expense</button>
+                </form>
+            </div>
+            {% for expense in expenses %}
+            <div class="category-item">
+                <span class="category-icon">{{ expense.emoji }}</span>
+                <div class="category-name">{{ expense.category }}</div>
+                <div class="amount expense">₹{{ expense.amount }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleForm(formId) {
+        const form = document.getElementById(formId);
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
 </body>
 </html>

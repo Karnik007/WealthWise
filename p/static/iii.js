@@ -1,4 +1,3 @@
-
 let incomeTotal = 0;
 let expenseTotal = 0;
 let incomeSources = [];
@@ -14,7 +13,6 @@ const currencyConfig = {
         'JPY': { symbol: '¥', rate: 1.6 }
     }
 };
-
 let currentCurrency = currencyConfig.default;
 const incomeEmojis = [
     '💰', '💸', '💵', '💼', '🏠', '📈', '🤑', '💳', '🏦', '📊', '💲', '🧾'
@@ -34,7 +32,6 @@ function initEmojiPickers() {
     const incomeEmojiPicker = document.querySelector('#addIncomeForm .emoji-picker');
     const expenseEmojiPicker = document.querySelector('#addExpenseForm .emoji-picker');
 
-    // Populate Income Emoji Picker
     incomeEmojis.forEach(emoji => {
         const span = document.createElement('span');
         span.className = 'emoji-option';
@@ -55,7 +52,7 @@ function initEmojiPickers() {
 }
 function initCurrencySelector() {
     const currencySelect = document.getElementById('currencySelector');
-    currencySelect.innerHTML = ''; // Clear existing options
+    currencySelect.innerHTML = '';
 
     Object.keys(currencyConfig.rates).forEach(currency => {
         const option = document.createElement('option');
@@ -112,7 +109,7 @@ function toggleForm(formId) {
 }
 function addIncome(event) {
     event.preventDefault();
-    
+
     const name = event.target.name.value.trim();
     const amount = parseFloat(event.target.amount.value);
     const frequency = event.target.frequency.value;
@@ -206,8 +203,6 @@ function renderIncomeSources() {
         }
     });
 }
-
-// Render Expense Sources
 function renderExpenseSources() {
     const expenseList = document.getElementById('expenseList');
     const currentMonthSelected = parseInt(document.getElementById('month').value);
@@ -232,7 +227,7 @@ function renderExpenseSources() {
     });
 }
 function confirmDeletion(callback) {
-    // Create a modal dynamically
+
     const modal = document.createElement('div');
     modal.className = 'deletion-modal';
     modal.innerHTML = `
@@ -241,8 +236,7 @@ function confirmDeletion(callback) {
             <p>Choose deletion scope:</p>
             <div class="modal-buttons">
                 <button onclick="handleDeletionChoice('current')">Current Month</button>
-                <button onclick="handleDeletionChoice('future')">Current & Future Months</button>
-                // <button class="red-button" onclick="handleDeletionChoice('all')">Entire Entry</button>
+                <button class="red-button" onclick="handleDeletionChoice('all')">Entire Entry</button>
                 <button onclick="closeDeletionModal()">Cancel</button>
             </div>
         </div>
@@ -341,7 +335,6 @@ function updateTotals() {
     const currentMonthSelected = parseInt(document.getElementById('month').value);
     incomeTotal = incomeSources.reduce((total, source) => 
         total + source.monthlyAmounts[currentMonthSelected], 0);
-    
     expenseTotal = expenseSources.reduce((total, source) => 
         total + source.monthlyAmounts[currentMonthSelected], 0);
     document.getElementById('totalIncome').innerText = `${currencyConfig.rates[currentCurrency].symbol}${incomeTotal.toFixed(2)}`;
@@ -359,7 +352,7 @@ function updateProgressBars(income, expenses, savings) {
     expenseBar.style.width = (expenses / total) * 100 + '%';
     savingsBar.style.width = (savings / total) * 100 + '%';
 }
-document.getElementById('month').addEventListener('change', () => {
+document.getElementById('month').addEventListener('change', () => {0
     renderIncomeSources();
     renderExpenseSources();
     updateTotals();

@@ -36,7 +36,7 @@
                 <a href="#" class="services-toggle">Services</a>
                 <ul class="services-dropdown">
                     <li><a href="i1.html">Income & Expenses</a></li>
-                    <li><a href="#">Goal Setting</a></li>
+                    <li><a href="G.html">Goal Setting</a></li>
                     <li><a href="#">Bill Payment Reminders</a></li>
                     <li><a href="#">Financial Reports</a></li>
                 </ul>
@@ -55,9 +55,12 @@
                 </ul>
             </li>
         </ul>
-        
         <div class="login-signup">
-                    <a href="{% url 'signup' %}" class="login">Log In</a>
+            {% if request.session.user_id %}
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+            {% else %}
+            <a href="{% url 'signup' %}"  class="login">Login</a>
+            {% endif %}
             </div>
         </div>
     </nav>
@@ -73,7 +76,7 @@
                 </div>
                 <div class="home_hero-right">
                     <div class="floating-hero-wrapper">
-                        <img src="https://cdn.prod.website-files.com/640f69143ec11b21d42015c6/6502e96f8b7ff92feac8c8ab_hero-phone.png"
+                        <img src="{% static 'mobile.webp' %}"
                              alt="Wealth Wise App on Phone" class="floating-hero">
                         <div class="floating-shadow"></div>
                     </div>
@@ -93,7 +96,6 @@
                 <h3>Products</h3>
                 <ul>
                     <li><a href="#">Budgeting Tools</a></li>
-                    <li><a href="#">Investment Plans</a></li>
                     <li><a href="#">Financial Reports</a></li>
                 </ul>
             </div>

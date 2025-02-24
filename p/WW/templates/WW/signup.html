@@ -18,7 +18,7 @@
                 <h1>Log In</h1>
                 {{login_form.as_p}}
                 <button type="submit" name="login">Log In</button>
-           
+                <a href="{% url 'forgot_password' %}" class="forgot-link" style="display: block; margin-top: 10px; text-align: center; color: #007bff; text-decoration: none;">Forgot Password?</a>
             </form>
         </div>
         <div class="form-container signup">
@@ -27,6 +27,7 @@
                 <h1>Create Account</h1>
                 {{signup_form.as_p}}
                 <button type="submit" name="signup">Create Account</button>
+               
             </form>
         </div>
         <div class="overlay">
@@ -37,7 +38,6 @@
             </div>
         </div>
     </div>
-
     <script>
         const container = document.getElementById('container');
         const toggleButton = document.getElementById('toggle');
