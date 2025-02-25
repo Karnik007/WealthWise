@@ -1,12 +1,28 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail 
+from django.conf import settings
 from django.contrib import messages
-from .forms import SignupForm, LoginForm, ForgotPasswordForm, IncomeForm, ExpenseForm
-from .models import User, Income, Expense
+from .forms import SignupForm, LoginForm, ForgotPasswordForm, IncomeForm, ExpenseForm, billForm
+from .models import User, Income, Expense, Bill
 
 def home(request):
     return render(request, 'WW/home.html')
+
+# def index(request, ):
+#     if request.method == 'POST':
+#         message = request.POST['message']
+#         email = request.POST['email']
+#         name = request.POST['name']
+#         send_mail(
+#             'Contact form',
+#             message,
+#             'settings.EMAIL_HOST_USER',
+#             ['example@gmail.com','example2@gmail.com','abc@gmail.com'],
+#             fail_silently=False,
+#         )
+#         return render(request, 'WW/B.html')
 
 def signup(request):
     if request.session.get('user_id'): 
@@ -141,3 +157,52 @@ def logout(request):
 
 def G(request):
     return render(request, 'WW/G.html')
+
+def b1(request):
+    user_id = request.session.get('user_id')
+    if not user_id:
+        messages.error(request, "You must be logged in.")
+        return redirect('signup')
+    user = User.objects.get(id=user_id)
+    bills = Bill.objects.filter(user=user)
+    total_bills = bills.count()
+    total_amount = sum(bill.amount for bill in bills)
+    paid_amount = sum(bill.amount for bill in bills if bill.is_paid)
+    pending_amount = total_amount - paid_amount
+    form = billForm()
+    return render(request, 'WW/b1.html', {
+        'bill_form': form,
+        'bills': bills,
+        'total_bills': total_bills,
+        'total_amount': total_amount,
+        'paid_amount': paid_amount,
+        'pending_amount': pending_amount,
+    })
+
+def add_bill(request):
+    user_id = request.session.get('user_id')
+    if not user_id:
+        messages.error(request, "You must be logged in.")
+        return redirect('signup')
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        form = billForm(request.POST)
+        if form.is_valid():
+            bill = form.save(commit=False)
+            bill.user = user
+            bill.save()
+            messages.success(request, 'Bill created successfully!')
+        else:
+            messages.error(request, 'Please correct the errors.')
+    else:
+        form = billForm()
+    return render(request, 'WW/b1.html', {'bill_form': form})
+
+def delete_bill(request, bill_id):
+    if request.method == 'GET':
+        
+        bill = get_object_or_404(Bill, id=bill_id)
+        bill.delete()
+        return JsonResponse({'message': 'Bill deleted successfully'})
+        print("hey")
+    return JsonResponse({'error': 'Invalid request method'}, status=400)

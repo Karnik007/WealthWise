@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Income, Expense
+from .models import User, Income, Expense, Bill
 
 class SignupForm(forms.ModelForm):
     class Meta:
@@ -77,3 +77,8 @@ class ExpenseForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+class billForm(forms.ModelForm):
+    class Meta:
+        model = Bill
+        fields = ['bill_name', 'amount', 'due_date']

@@ -23,4 +23,14 @@ class Expense(models.Model):
     
     def __str__(self):
         return f"{self.category} - {self.currency.symbol}{self.amount}"
+    
+class Bill(models.Model):
+    bill_name = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    due_date = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_paid = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
+    
 

@@ -23,14 +23,16 @@ SECRET_KEY = 'django-insecure-9c!gn5o4-8sd&a+q6j*aopadh44qg651*+$o%un&ll515(nrjk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+DEBUG = True
 EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'puranikarnik@gmail.com'
+EMAIL_HOST_PASSWORD = 'bedmuzklsiqbwzgb'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'wealthwise200@gmail.com'
-EMAIL_HOST_PASSWORD = 'hcayuxvpkvetdcxx'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,8 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WW',# Add this line
-    'tailwind', # Add this line
+    'WW',# Add this line # Add this line
     'theme',
     ]
 TAILWIND_APP_NAME = 'theme' # Add this line
@@ -86,9 +87,9 @@ DATABASES = {
     'default':
       {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'wealthwise',  
+        'NAME': 'ww',  
         'USER': 'root',  
-        'PASSWORD': 'dev@2006',  
+        'PASSWORD': 'Karnik@1',  
         'HOST': 'localhost',  
         'PORT': '3306', 
     }  
