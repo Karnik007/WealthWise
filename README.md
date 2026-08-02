@@ -59,7 +59,7 @@ Wealth-Wise empowers users to take full control of their financial lifecycle —
 | 2 | [Problem Statement](#2-problem-statement) | 7 | [Repository Structure](#7-repository-structure) |
 | 3 | [Links & Credentials](#3-links--credentials) | 8 | [Authentication](#8-authentication) |
 | 4 | [Features & Deliverables](#4-features--deliverables) | 9 | [Setup (Local)](#9-setup-local) |
-| 5 | [Technology Stack](#5-technology-stack) | 10 | [Screenshots](#10-screenshots) |
+| 5 | [Technology Stack](#5-technology-stack) | | |
 
 </details>
 
@@ -480,46 +480,6 @@ Password requirements enforced via regex:
    python manage.py runserver
    ```
    *Navigate to `http://127.0.0.1:8000` in your browser.*
-
----
-
-## 10. Screenshots
-
-<details>
-<summary><b>🚀 Landing Page</b></summary>
-<br/>
-<i>Cyberpunk dark theme landing page with green neon accents</i>
-</details>
-
-<details>
-<summary><b>🔐 Signup & Login</b></summary>
-<br/>
-<i>Dual-form authentication page with password strength validation</i>
-</details>
-
-<details>
-<summary><b>📊 Income & Expense Dashboard</b></summary>
-<br/>
-<i>Monthly transaction tracker with savings percentage and category breakdowns</i>
-</details>
-
-<details>
-<summary><b>🎯 Financial Goal Tracker</b></summary>
-<br/>
-<i>Goal setting with progress bars linked to actual savings</i>
-</details>
-
-<details>
-<summary><b>📋 Bill Management</b></summary>
-<br/>
-<i>Bill tracker with paid/unpaid status and automated daily reminders</i>
-</details>
-
-<details>
-<summary><b>📈 Financial Reports</b></summary>
-<br/>
-<i>Interactive Plotly charts — bar, line, and pie visualizations</i>
-</details>
 
 ---
 
