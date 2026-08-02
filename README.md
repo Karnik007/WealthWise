@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A0F0D,50:00FF41,100:39FF14&height=210&section=header&text=Wealth-Wise&fontSize=80&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Smart%20Personal%20Finance%20%26%20Expense%20Intelligence&descAlignY=56&descSize=18" width="100%" alt="Wealth-Wise banner" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1526,50:00FF41,100:39FF14&height=210&section=header&text=Wealth-Wise&fontSize=80&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Smart%20Personal%20Finance%20%26%20Expense%20Intelligence&descAlignY=56&descSize=18" width="100%" alt="Wealth-Wise banner" />
 
 <br/>
 
@@ -525,7 +525,7 @@ Password requirements enforced via regex:
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A0F0D,50:00FF41,100:39FF14&height=120&section=footer" width="100%" alt="Footer" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1526,50:00FF41,100:39FF14&height=120&section=footer" width="100%" alt="Footer" />
 
 <br/>
 
