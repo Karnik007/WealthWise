@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiscalPilot - Choose Asset</title>
+    <link rel="stylesheet" href="{% static 'i1.css' %}">
+    <style>
+        .fiscalpilot-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .asset-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .asset-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .asset-card.gold {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .asset-card.reits {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .asset-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .asset-card h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .asset-card p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .nav-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .info-box {
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        .info-box h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .info-box ul {
+            color: #34495e;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background"></div>
+    <div class="particles" id="particles"></div>
+    <div class="container fiscalpilot-container">
+        <div class="page-header">
+            <h1>🚀 FiscalPilot</h1>
+            <p>Financial Decision Confidence Platform</p>
+        </div>
+
+        <div class="info-box">
+            <h3>How It Works</h3>
+            <ul>
+                <li>We analyze your existing income and expense data from WealthWise</li>
+                <li>Evaluate your financial stability and risk profile</li>
+                <li>Determine if an asset (Gold or REITs) fits your financial situation</li>
+                <li>Provide clear recommendations with explanations</li>
+            </ul>
+        </div>
+
+        <div class="assets-grid">
+            <a href="{% url 'fiscalpilot_decision_result' %}?asset_type=gold" class="asset-card gold">
+                <div class="asset-icon">🥇</div>
+                <h2>Gold</h2>
+                <p>Physical gold or gold ETFs - a traditional store of value with lower volatility. Suitable for conservative investors seeking portfolio diversification.</p>
+            </a>
+
+            <a href="{% url 'fiscalpilot_decision_result' %}?asset_type=reits" class="asset-card reits">
+                <div class="asset-icon">🏢</div>
+                <h2>REITs</h2>
+                <p>Real Estate Investment Trusts - provides exposure to real estate markets with dividends. Higher yield potential but more volatility.</p>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="{% url 'home' %}">← Back to Home</a>
+            <a href="{% url 'i1' %}">View Income/Expenses</a>
+        </div>
+    </div>
+</body>
+</html>
